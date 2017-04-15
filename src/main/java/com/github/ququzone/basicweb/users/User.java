@@ -81,6 +81,11 @@ public class User implements Serializable {
         this.updatedTime = updatedTime;
     }
 
+    @Override
+    public String toString() {
+        return String.format("{id:%s, phone:%s, nickname:%s}", id, phone, nickname);
+    }
+
     public enum Status {
         NORMAL, DISABLE
     }

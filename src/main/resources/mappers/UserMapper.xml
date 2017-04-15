@@ -6,6 +6,10 @@
     <resultMap id="UserResult" type="com.github.ququzone.basicweb.users.User">
         <id property="id" column="id"/>
         <result property="phone" column="phone"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+        <result property="nickname" column="nickname"/>
+        <result property="status" column="status"/>
         <result property="createdTime" column="created_time"/>
         <result property="updatedTime" column="updated_time"/>
     </resultMap>
