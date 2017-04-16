@@ -1,5 +1,7 @@
 package com.github.ququzone.basicweb.users;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 
 /**
@@ -8,13 +10,26 @@ import java.io.Serializable;
  * @author Yang XuePing
  */
 public class User implements Serializable {
+    @Expose
     private String id;
+
+    @Expose
     private String phone;
+
     private String password;
+
     private String salt;
+
+    @Expose
     private String nickname;
+
+    @Expose
     private Status status;
+
+    @Expose
     private String createdTime;
+
+    @Expose
     private String updatedTime;
 
     public String getId() {
