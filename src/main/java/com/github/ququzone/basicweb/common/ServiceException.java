@@ -1,4 +1,4 @@
-package com.github.ququzone.basicweb;
+package com.github.ququzone.basicweb.common;
 
 /**
  * Service exception.

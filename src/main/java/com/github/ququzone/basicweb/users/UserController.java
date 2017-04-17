@@ -1,6 +1,6 @@
 package com.github.ququzone.basicweb.users;
 
-import com.github.ququzone.basicweb.GsonHelper;
+import com.github.ququzone.basicweb.common.GsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,13 @@ public class UserController {
     @RequestMapping(value = "/users/login", method = RequestMethod.POST)
     public ResponseEntity<String> login(@RequestParam("phone") String phone,
                                         @RequestParam("password") String password) {
-        User user = userService.login(phone, password);
-        return ResponseEntity.ok(GsonHelper.string(user));
+        return ResponseEntity.ok(GsonHelper.string(userService.login(phone, password)));
+    }
+
+    @RequestMapping(value = "/users/register", method = RequestMethod.POST)
+    public ResponseEntity<String> register(@RequestParam("phone") String phone,
+                                           @RequestParam("password") String password,
+                                           @RequestParam("nickname") String nickname) {
+        return ResponseEntity.ok(GsonHelper.string(userService.register(phone, password, nickname)));
     }
 }

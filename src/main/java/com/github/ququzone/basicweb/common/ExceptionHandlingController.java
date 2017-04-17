@@ -1,4 +1,4 @@
-package com.github.ququzone.basicweb;
+package com.github.ququzone.basicweb.common;
 
 import com.google.gson.JsonObject;
 import org.springframework.http.ResponseEntity;
