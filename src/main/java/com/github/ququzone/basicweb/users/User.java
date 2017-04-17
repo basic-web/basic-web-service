@@ -3,6 +3,7 @@ package com.github.ququzone.basicweb.users;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * user model.
@@ -27,10 +28,10 @@ public class User implements Serializable {
     private Status status;
 
     @Expose
-    private String createdTime;
+    private Date createdTime;
 
     @Expose
-    private String updatedTime;
+    private Date updatedTime;
 
     public String getId() {
         return id;
@@ -80,19 +81,19 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public String getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(String createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
-    public String getUpdatedTime() {
+    public Date getUpdatedTime() {
         return updatedTime;
     }
 
-    public void setUpdatedTime(String updatedTime) {
+    public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
     }
 
