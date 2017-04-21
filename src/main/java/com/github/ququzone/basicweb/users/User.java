@@ -25,6 +25,9 @@ public class User implements Serializable {
     private String nickname;
 
     @Expose
+    private String head;
+
+    @Expose
     private Status status;
 
     @Expose
@@ -71,6 +74,14 @@ public class User implements Serializable {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
     }
 
     public Status getStatus() {

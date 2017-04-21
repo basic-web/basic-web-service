@@ -9,6 +9,7 @@
         <result property="password" column="password"/>
         <result property="salt" column="salt"/>
         <result property="nickname" column="nickname"/>
+        <result property="head" column="head"/>
         <result property="status" column="status"/>
         <result property="createdTime" column="created_time"/>
         <result property="updatedTime" column="updated_time"/>
