@@ -54,4 +54,12 @@ public class UserService {
         userMapper.insert(user);
         return user;
     }
+
+    public User get(String id) {
+        User user = userMapper.find(id);
+        if (user == null) {
+            throw new ServiceException("用户不存在", 404);
+        }
+        return user;
+    }
 }
