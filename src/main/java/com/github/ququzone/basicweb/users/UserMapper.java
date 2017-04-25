@@ -22,4 +22,7 @@ public interface UserMapper {
     @Select("select id, phone, password, salt, nickname, head, status, created_time, updated_time from users where id = #{id}")
     @ResultMap("UserResult")
     User find(@Param("id") String id);
+
+    @Update("update users set phone = #{phone}, password = #{password}, nickname = #{nickname}, head = #{head}, updated_time = #{updatedTime} where id = #{id}")
+    void update(User user);
 }
