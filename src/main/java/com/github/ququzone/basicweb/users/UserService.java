@@ -62,4 +62,32 @@ public class UserService {
         }
         return user;
     }
+
+    public User update(String id, String phone, String originPassword, String password, String nickname, String head) {
+        User user = userMapper.find(id);
+        if (user == null) {
+            throw new ServiceException("用户不存在", 404);
+        }
+        if (phone != null) {
+            if (userMapper.findByPhone(phone) != null) {
+                throw new ServiceException("电话号码已经存在", 402);
+            }
+            user.setPhone(phone);
+        }
+        if (password != null) {
+            if (!DigestHelper.digest("MD5", salt, originPassword, user.getSalt()).equals(user.getPassword())) {
+                throw new ServiceException("原密码错误", 402);
+            }
+            user.setPassword(DigestHelper.digest("MD5", salt, password, user.getSalt()));
+        }
+        if (nickname != null) {
+            user.setNickname(nickname);
+        }
+        if (head != null) {
+            user.setHead(head);
+        }
+        user.setUpdatedTime(new Date());
+        userMapper.update(user);
+        return user;
+    }
 }

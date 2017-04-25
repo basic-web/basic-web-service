@@ -36,4 +36,14 @@ public class UserController {
     public ResponseEntity<String> get(@PathVariable("id") String id) {
         return ResponseEntity.ok(GsonHelper.string((userService.get(id))));
     }
+
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<String> update(@PathVariable("id") String id,
+                                         @RequestParam(value = "phone", required = false) String phone,
+                                         @RequestParam(value = "origin_password", required = false) String originPassword,
+                                         @RequestParam(value = "password", required = false) String password,
+                                         @RequestParam(value = "nickname", required = false) String nickname,
+                                         @RequestParam(value = "head", required = false) String head) {
+        return ResponseEntity.ok(GsonHelper.string((userService.update(id, phone, originPassword, password, nickname, head))));
+    }
 }
