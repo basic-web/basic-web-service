@@ -25,5 +25,7 @@ $ ./build.sh
 ### Run basic service container
 
 ```
-$ docker run --name basic-service --link postgres:postgres --net dev -d basic-service
+$ docker-compose -f ./docker-compose-kafka.yml up -d
+$ docker run --name basic-service --link postgres:postgres \
+    --link zookeeper:zookeeper --link kafka:kafka --net dev -d basic-service
 ```
