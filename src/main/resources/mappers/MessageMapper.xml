@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.ququzone.basicweb.messages.MessageMapper">
+    <resultMap id="MessageResult" type="com.github.ququzone.basicweb.messages.Message">
+        <id property="id" column="id"/>
+        <result property="source" column="source"/>
+        <result property="dest" column="dest"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="readed" column="readed"/>
+        <result property="createdTime" column="created_time"/>
+    </resultMap>
+</mapper>
