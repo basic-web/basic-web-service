@@ -35,5 +35,5 @@ public interface MessageMapper {
     List<Message> unreadByDest(@Param("dest") String dest, @Param("limit") int limit);
 
     @Update("update messages set readed = #{readed} where id = #{id}")
-    void updateReaded(String id, Boolean readed);
+    void updateReaded(@Param("id") String id, @Param("readed") Boolean readed);
 }

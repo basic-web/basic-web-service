@@ -1,6 +1,7 @@
 package com.github.ququzone.basicweb.messages;
 
 import com.github.ququzone.basicweb.common.KafkaProducerHelper;
+import com.github.ququzone.basicweb.common.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,5 +42,13 @@ public class MessageService {
         result.total = mapper.countUnread(dest);
         result.messages = mapper.unreadByDest(dest, size);
         return result;
+    }
+
+    public void read(String userID, String messageID) {
+        Message message = mapper.find(messageID);
+        if (message == null || !message.getDest().equals(userID)) {
+            throw new ServiceException("消息不存在", 404);
+        }
+        mapper.updateReaded(messageID, Boolean.TRUE);
     }
 }
