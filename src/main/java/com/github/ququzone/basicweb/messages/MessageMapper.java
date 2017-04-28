@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Mapper
 @Component
 public interface MessageMapper {
-    @Insert("insert into messages(id, source, dest, title, content, unread, created_time) " +
-            "values (#{id}, #{source}, #{dest}, #{title}, #{content}, #{unread}, #{createdTime})")
+    @Insert("insert into messages(id, source, dest, title, content, readed, created_time) " +
+            "values (#{id}, #{source}, #{dest}, #{title}, #{content}, #{readed}, #{createdTime})")
     void insert(Message message);
 }

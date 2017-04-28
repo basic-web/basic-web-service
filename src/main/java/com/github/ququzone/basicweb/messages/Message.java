@@ -1,5 +1,6 @@
 package com.github.ququzone.basicweb.messages;
 
+import com.github.ququzone.basicweb.common.AbstractModel;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
@@ -10,10 +11,7 @@ import java.util.Date;
  *
  * @author Yang XuePing
  */
-public class Message implements Serializable {
-    @Expose
-    private String id;
-
+public class Message extends AbstractModel implements Serializable {
     @Expose
     private String source;
 
@@ -28,17 +26,6 @@ public class Message implements Serializable {
 
     @Expose
     private Boolean readed;
-
-    @Expose
-    private Date createdTime;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getSource() {
         return source;
@@ -78,13 +65,5 @@ public class Message implements Serializable {
 
     public void setReaded(Boolean readed) {
         this.readed = readed;
-    }
-
-    public Date getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
     }
 }

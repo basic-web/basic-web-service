@@ -1,6 +1,5 @@
 package com.github.ququzone.basicweb.messages;
 
-import com.github.ququzone.basicweb.common.GsonHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +21,6 @@ public class MessageController {
     public ResponseEntity<String> add(@RequestParam(value = "source", required = false) String source,
                                       @RequestParam("dest") String dest,
                                       @RequestParam("title") String title, @RequestParam("content") String content) {
-        return ResponseEntity.ok(GsonHelper.string(service.add(source, dest, title, content)));
+        return ResponseEntity.ok(service.add(source, dest, title, content).toGson());
     }
 }
