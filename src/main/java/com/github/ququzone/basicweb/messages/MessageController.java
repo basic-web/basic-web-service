@@ -23,4 +23,10 @@ public class MessageController {
                                       @RequestParam("title") String title, @RequestParam("content") String content) {
         return ResponseEntity.ok(service.add(source, dest, title, content).toGson());
     }
+
+    @RequestMapping(value = "/messages/latest", method = RequestMethod.GET)
+    public ResponseEntity<String> latest(@RequestParam("dest") String dest,
+                                         @RequestParam(value = "size", defaultValue = "6", required = false) Integer size) {
+        return ResponseEntity.ok(service.latestByDest(dest, size).toGson());
+    }
 }

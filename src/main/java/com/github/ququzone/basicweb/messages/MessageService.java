@@ -1,6 +1,5 @@
 package com.github.ququzone.basicweb.messages;
 
-import com.github.ququzone.basicweb.common.GsonHelper;
 import com.github.ququzone.basicweb.common.KafkaProducerHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +34,12 @@ public class MessageService {
         mapper.insert(message);
         kafkaProducerHelper.send("messages", message.toGson());
         return message;
+    }
+
+    public LatestMessage latestByDest(String dest, Integer size) {
+        LatestMessage result = new LatestMessage();
+        result.total = mapper.countUnread(dest);
+        result.messages = mapper.unreadByDest(dest, size);
+        return result;
     }
 }
