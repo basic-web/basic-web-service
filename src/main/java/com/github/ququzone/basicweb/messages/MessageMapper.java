@@ -25,6 +25,7 @@ public interface MessageMapper {
 
     @Select("select id, source, dest, title, content, readed, created_time from messages where dest = #{dest} " +
             "order by created_time desc offset #{offset} limit #{limit}")
+    @ResultMap("MessageResult")
     List<Message> pageByDest(@Param("dest") String dest, @Param("offset") long offset, @Param("limit") int limit);
 
     @Select("select count(id) from messages where dest = #{dest} and readed = false")
@@ -32,6 +33,7 @@ public interface MessageMapper {
 
     @Select("select id, source, dest, title, content, readed, created_time from messages where dest = #{dest} " +
             "and readed = false order by created_time desc limit #{limit}")
+    @ResultMap("MessageResult")
     List<Message> unreadByDest(@Param("dest") String dest, @Param("limit") int limit);
 
     @Update("update messages set readed = #{readed} where id = #{id}")

@@ -44,11 +44,16 @@ public class MessageService {
         return result;
     }
 
-    public void read(String userID, String messageID) {
+    public ReadedMessage read(String userID, String messageID) {
         Message message = mapper.find(messageID);
         if (message == null || !message.getDest().equals(userID)) {
             throw new ServiceException("消息不存在", 404);
         }
         mapper.updateReaded(messageID, Boolean.TRUE);
+        message.setReaded(Boolean.TRUE);
+        ReadedMessage result = new ReadedMessage();
+        result.total = mapper.countUnread(userID);
+        result.message = message;
+        return result;
     }
 }
