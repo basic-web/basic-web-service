@@ -20,9 +20,6 @@ public interface MessageMapper {
     @Select("select id, source, dest, title, content, readed, created_time from messages where id = #{id}")
     Message find(@Param("id") String id);
 
-    @Select("select count(id) from messages where dest = #{dest}")
-    Long countByDest(@Param("dest") String dest);
-
     @Select("select id, source, dest, title, content, readed, created_time from messages where dest = #{dest} " +
             "order by created_time desc offset #{offset} limit #{limit}")
     @ResultMap("MessageResult")
@@ -38,4 +35,6 @@ public interface MessageMapper {
 
     @Update("update messages set readed = #{readed} where id = #{id}")
     void updateReaded(@Param("id") String id, @Param("readed") Boolean readed);
+
+    long countByDestAndQ(@Param("dest") String dest, @Param("q") String q);
 }

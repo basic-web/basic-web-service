@@ -12,4 +12,11 @@
         <result property="readed" column="readed"/>
         <result property="createdTime" column="created_time"/>
     </resultMap>
+
+    <select id="countByDestAndQ" resultMap="MessageResult">
+        select count(id) from messages where dest = #{dest}
+        <if test="q != null">
+            and (title like #{q} or content like #{q})
+        </if>
+    </select>
 </mapper>
