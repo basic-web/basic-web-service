@@ -33,7 +33,6 @@ public class MessageController {
 
     @RequestMapping(value = "/message/{messageID}/user/{userID}/read", method = RequestMethod.PUT)
     public ResponseEntity<String> read(@PathVariable("userID") String userID, @PathVariable("messageID") String messageID) {
-        service.read(userID, messageID);
-        return ResponseEntity.ok("{}");
+        return ResponseEntity.ok(service.read(userID, messageID).toGson());
     }
 }
