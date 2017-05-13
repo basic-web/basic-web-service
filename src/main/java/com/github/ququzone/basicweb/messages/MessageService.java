@@ -60,6 +60,10 @@ public class MessageService {
 
     public Page<Message> page(String dest, int page, String q) {
         long total = mapper.countByDestAndQ(dest, q);
-        return null;
+        Page<Message> result = new Page<>(total, Page.DEFAULT_PAGE_SIZE, page);
+        if (total > 0) {
+            result.setData(mapper.pageByDestAndQ(dest, q, Page.DEFAULT_PAGE_SIZE, (page - 1) * Page.DEFAULT_PAGE_SIZE));
+        }
+        return result;
     }
 }
