@@ -36,8 +36,10 @@ public class MessageController {
         return ResponseEntity.ok(service.read(userID, messageID).toGson());
     }
 
-    @RequestMapping(value = "/messages/user/{userID}", method = RequestMethod.PUT)
-    public ResponseEntity<String> page(@PathVariable("userID") String userID, @RequestParam("page") int page, @RequestParam("q") String q) {
+    @RequestMapping(value = "/messages/user/{userID}", method = RequestMethod.GET)
+    public ResponseEntity<String> page(@PathVariable("userID") String userID,
+                                       @RequestParam(value = "page", defaultValue = "1") int page,
+                                       @RequestParam(value = "q", required = false) String q) {
         return ResponseEntity.ok(service.page(userID, page, q).toGson());
     }
 }
