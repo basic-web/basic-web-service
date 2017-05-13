@@ -27,5 +27,11 @@ $ ./build.sh
 ```
 $ docker-compose -f ./docker-compose-kafka.yml up -d
 $ docker run --name basic-service --link postgres:postgres \
+    -p 9000:9000 \
     --link zookeeper:zookeeper --link kafka:kafka --net dev -d basic-service
 ```
+
+### Swagger info
+
+[API docs](http://localhost:9000/v2/api-docs)
+[Swagger UI](http://localhost:9000/swagger-ui.html)

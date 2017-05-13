@@ -1,6 +1,7 @@
 package com.github.ququzone.basicweb.messages;
 
 import com.github.ququzone.basicweb.common.KafkaProducerHelper;
+import com.github.ququzone.basicweb.common.Page;
 import com.github.ququzone.basicweb.common.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,15 @@ public class MessageService {
         ReadedMessage result = new ReadedMessage();
         result.total = mapper.countUnread(userID);
         result.message = message;
+        return result;
+    }
+
+    public Page<Message> page(String dest, int page, String q) {
+        long total = mapper.countByDestAndQ(dest, q);
+        Page<Message> result = new Page<>(total, Page.DEFAULT_PAGE_SIZE, page);
+        if (total > 0) {
+            result.setData(mapper.pageByDestAndQ(dest, q, Page.DEFAULT_PAGE_SIZE, (page - 1) * Page.DEFAULT_PAGE_SIZE));
+        }
         return result;
     }
 }

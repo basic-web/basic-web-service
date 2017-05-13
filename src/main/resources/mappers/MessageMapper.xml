@@ -12,4 +12,19 @@
         <result property="readed" column="readed"/>
         <result property="createdTime" column="created_time"/>
     </resultMap>
+
+    <select id="countByDestAndQ" resultType="long">
+        select count(id) from messages where dest = #{dest}
+        <if test="q != null">
+            and (title like #{q} or content like #{q})
+        </if>
+    </select>
+
+    <select id="pageByDestAndQ" resultMap="MessageResult">
+        select id, source, dest, title, content, readed, created_time from messages where dest = #{dest}
+        <if test="q != null">
+            and (title like #{q} or content like #{q})
+        </if>
+        order by created_time desc offset #{offset} limit #{limit}
+    </select>
 </mapper>
