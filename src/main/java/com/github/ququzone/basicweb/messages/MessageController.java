@@ -40,6 +40,12 @@ public class MessageController {
     public ResponseEntity<String> page(@PathVariable("userID") String userID,
                                        @RequestParam(value = "page", defaultValue = "1") int page,
                                        @RequestParam(value = "q", required = false) String q) {
+        if (q != null && q.equals("")) {
+            q = null;
+        }
+        if (q != null) {
+            q = "%" + q + "%";
+        }
         return ResponseEntity.ok(service.page(userID, page, q).toGson());
     }
 }
